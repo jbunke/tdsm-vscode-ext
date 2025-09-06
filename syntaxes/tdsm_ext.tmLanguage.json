@@ -1,0 +1,20 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "TDSM extension",
+	"patterns": [
+        { "include": "source.ds" }, 
+		{ "include": "#ext_types" }, 
+        { "include": "#namespace" }
+	],
+	"repository": {
+		"ext_types": {
+			"name": "entity.name.type",
+			"match": "\\b(anim|asset_choice|col_sel|layer|no_choice|replacement|sheet|style)\\b"
+		}, 
+        "namespace": {
+            "match": "\\$(ColorProc|Init|TDSM|Util)\\b", 
+            "name": "emphasis"
+        }
+	},
+	"scopeName": "source.tds"
+}

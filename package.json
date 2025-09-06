@@ -1,0 +1,55 @@
+{
+    "name": "deltascript-for-tdsm",
+    "displayName": "DeltaScript for Top Down Sprite Maker",
+    "description": "Syntax highlighting for Top Down Sprite Maker scripts",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jbunke/tdsm-vscode-ext.git"
+    }, 
+    "publisher": "jordanbunke",
+    "engines": {
+        "vscode": "^1.23.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "deltascript",
+                "aliases": [
+                    "DeltaScript",
+                    "deltascript"
+                ],
+                "extensions": [
+                    ".ds"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "tdsm_ext",
+                "aliases": [
+                    "DeltaScript for Top Down Sprite Maker",
+                    "deltascript"
+                ],
+                "extensions": [
+                    ".tds"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "deltascript",
+                "scopeName": "source.ds",
+                "path": "./syntaxes/deltascript.tmLanguage.json"
+            },
+            {
+                "language": "tdsm_ext",
+                "scopeName": "source.tds",
+                "path": "./syntaxes/tdsm_ext.tmLanguage.json"
+            }
+        ]
+    }
+}

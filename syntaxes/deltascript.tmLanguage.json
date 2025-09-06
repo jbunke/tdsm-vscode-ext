@@ -1,0 +1,149 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "DeltaScript",
+	"patterns": [
+		{ "include": "#comments" }, 
+		{ "include": "#strings" }, 
+		{ "include": "#operator" }, 
+		{ "include": "#keywords" },
+		{ "include": "#function" }, 
+		{ "include": "#literals" }
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{ "include": "#line_comment" }, 
+				{ "include": "#block_comment" }
+			]
+		}, 
+		"line_comment": {
+			"match": "//.*$", 
+			"name": "comment.line"
+		}, 
+		"block_comment": {
+			"begin": "/\\*",
+            "end": "\\*/", 
+			"name": "comment.block"
+		}, 
+		"keywords": {
+			"patterns": [
+				{ "include": "#misc_kw" }, 
+				{ "include": "#decl_mod" }, 
+				{ "include": "#base_types" }, 
+				{ "include": "#punctuation" }
+			]
+		},
+		"misc_kw": {
+			"match": "\\b(if|else|in|do|while|for|return|new|when|is|passes|matches|otherwise)\\b", 
+			"name": "keyword"
+		},
+		"decl_mod": {
+			"match": "\\bfinal\\b|~", 
+			"name": "keyword"
+		}, 
+		"base_types": {
+			"match": "\\b(bool|char|color|float|image|int|string)\\b", 
+			"name": "entity.name.type"
+		},
+		"punctuation": {
+			"match": ";|,", 
+			"name": "keyword"
+		}, 
+        "operator": {
+			"match": "\\+|\\-|\\*|\\/|%|==|!=|>|<|>=|<=|\\^|&&|\\|\\||!|\\|\\||\\?|:|=|\\+=|-=|\\*=|/=|%=|&=|\\|=|#\\|", 
+			"name": "keyword.operator"
+		}, 
+		"literals": {
+			"patterns": [
+				{ "include": "#num_lits" }, 
+				{ "include": "#hex_color" }, 
+				{ "include": "#char_lits" }, 
+				{ "include": "#bool_lits" }
+			]
+		}, 
+		"bool_lits": {
+			"match": "\\b(true|false)\\b", 
+			"name": "keyword"
+		},
+		"num_lits": {
+			"patterns": [
+				{ "include": "#f_style_lit" },
+				{ "include": "#decimal_lit" },
+				{ "include": "#hex_lit" },   
+				{ "include": "#int_lit" }
+			]
+		}, 
+		"f_style_lit": {
+			"match": "\\b\\d+f\\b", 
+			"name": "constant.numeric"
+		}, 
+		"decimal_lit": {
+			"match": "\\b\\d+\\.\\d+\\b", 
+			"name": "constant.numeric"
+		}, 
+		"hex_lit": {
+			"match": "\\b0x[0-9a-f]+\\b", 
+			"name": "constant.numeric"
+		}, 
+		"int_lit": { 
+			"match": "\\b\\d+\\b", 
+			"name": "constant.numeric"
+		},
+		"function": {
+			"patterns": [
+				{ "include": "#func_def" }, 
+				{ "include": "#scoped_func_call" }, 
+				{ "include": "#func_call" }, 
+				{ "include": "#func_pointer" }, 
+				{ "include": "#scoped_property" }
+			]
+		}, 
+		"scoped_property": {
+            "name": "entity.name.tag",
+            "match": "(?<=\\.)\\s*[A-Za-z_][A-Za-z0-9_]*\\b"
+        }, 
+		"scoped_func_call": {
+            "name": "entity.name.function",
+            "match": "(?<=\\.)\\s*[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()"
+        }, 
+		"func_def": {
+			"match": "^[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()", 
+			"name": "emphasis"
+		}, 
+		"func_call": {
+			"match": "[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()", 
+			"name": "entity.name.function"
+		}, 
+		"func_pointer": {
+			"match": "(?<=::)\\s*[A-Za-z_][A-Za-z0-9_]*\\b", 
+			"name": "emphasis"
+		},
+		"hex_color": {
+			"name": "constant.numeric",
+			"match": "\\#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?\\b"
+		}, 
+		"char_lits": {
+			"name": "string.quoted.single",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape",
+					"match": "\\\\."
+				}
+			]
+		}, 
+		"strings": {
+			"name": "string.quoted.double",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.ds"
+}
