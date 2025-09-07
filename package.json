@@ -2,7 +2,8 @@
     "name": "deltascript-for-tdsm",
     "displayName": "DeltaScript for Top Down Sprite Maker",
     "description": "Syntax highlighting for Top Down Sprite Maker scripts",
-    "version": "1.0.0",
+    "version": "1.0.1",
+    "icon": "./icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/jbunke/tdsm-vscode-ext.git"
